@@ -1,12 +1,3 @@
-interface ReservationSummaryAccumulator {
-  [key: string]: {
-    reservation_uuid: string
-    active_purchases: number
-    total_charges: number
-    products: ProductSummary[]
-  }
-}
-
 interface ReservationProductSummary {
   product_name: string
   status: ProductStatus
@@ -53,34 +44,33 @@ export const getReservations = (): FinalReservationSummary[] => {
     }
   )
 
-  const reservationSummary =
-    combinedProducts.reduce<ReservationSummaryAccumulator>((acc, product) => {
-      if (!acc[product.reservation_uuid]) {
-        acc[product.reservation_uuid] = {
-          reservation_uuid: product.reservation_uuid,
-          active_purchases: 0,
-          total_charges: 0,
-          products: [],
-        }
+  const reservationSummary = combinedProducts.reduce((acc, product) => {
+    if (!acc[product.reservation_uuid]) {
+      acc[product.reservation_uuid] = {
+        reservation_uuid: product.reservation_uuid,
+        active_purchases: 0,
+        total_charges: 0,
+        products: [],
       }
+    }
 
-      if (product.status === "active") {
-        acc[product.reservation_uuid].active_purchases += 1
-        acc[product.reservation_uuid].total_charges += product.charge
-      }
+    if (product.status === "active") {
+      acc[product.reservation_uuid].active_purchases += 1
+      acc[product.reservation_uuid].total_charges += product.charge
+    }
 
-      acc[product.reservation_uuid].products.push({
-        name: product.name,
-        status: product.status,
-        charge: product.charge,
-      })
+    acc[product.reservation_uuid].products.push({
+      name: product.name,
+      status: product.status,
+      charge: product.charge,
+    })
 
-      return acc
-    }, {})
+    return acc
+  }, {})
 
   const summaryData: FinalReservationSummary[] = Object.values(
     reservationSummary
-  ).map((reservation) => ({
+  ).map((reservation: any) => ({
     reservation_uuid: reservation.reservation_uuid,
     summary: {
       number_of_active_purchases: reservation.active_purchases,
@@ -94,4 +84,13 @@ export const getReservations = (): FinalReservationSummary[] => {
   }))
 
   return summaryData
+}
+
+export const getReservation = (reservationId) => {
+  const allProducts = getReservations()
+  const reservation = allProducts.find(
+    (reservation) => reservation.reservation_uuid === reservationId
+  )
+
+  return reservation
 }

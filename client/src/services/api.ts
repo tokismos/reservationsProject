@@ -1,3 +1,4 @@
+import { Reservation } from "@/types/product"
 import axios from "axios"
 
 const API_URL = "http://localhost:3000/api/reservations"
@@ -8,11 +9,19 @@ export const api = axios.create({
 
 export const getAllReservations = async () => {
   try {
-    const response = await api.get("/", {
-      // headers: { Authorization: "Bearer aaaa" },
-    })
+    const response = await api.get("/", {})
     return response.data
   } catch (e) {
-    console.log("AN ERROR", e)
+    console.log("Error has occured", e)
+  }
+}
+export const getReservationById = async (
+  id: Reservation["reservation_uuid"]
+) => {
+  try {
+    const response = await api.get(`/${id}`, {})
+    return response.data
+  } catch (e) {
+    console.log("Error has occured", e)
   }
 }
