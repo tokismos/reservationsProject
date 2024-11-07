@@ -1,8 +1,8 @@
-import { getProducts } from "../models/productModel"
+import { getReservations } from "../models/ReservationModel"
 
-export const getAllProducts = async (req, res) => {
+export const getAllReservations = async (req, res) => {
   try {
-    const summaryData = await getProducts()
+    const summaryData = await getReservations()
 
     res.json({
       success: true,

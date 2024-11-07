@@ -32,7 +32,7 @@ import {
   ProductSummary,
 } from "../types/product"
 
-export const getProducts = (): FinalReservationSummary[] => {
+export const getReservations = (): FinalReservationSummary[] => {
   const combinedProducts: CombinedProduct[] = PRODUCT_ASSIGMNET.map(
     (assignment: ProductAssignment) => {
       const charge = PRODUCT_CHARGES.find(

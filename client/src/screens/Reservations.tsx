@@ -1,8 +1,10 @@
-import { useGetProducts } from "@/hooks/useGetProducts"
 import { AccordionReservation } from "@/components/AccordionReservation"
+import { useGetReservations } from "@/hooks/useGetReservations"
 
-export const Products = () => {
-  const { data: products } = useGetProducts()
+export const Reservations = () => {
+  const { data: products, isLoading } = useGetReservations()
+
+  if (isLoading) return <div> LOADING .....</div>
 
   return (
     <div className="w-full max-w-3xl mx-auto p-4">

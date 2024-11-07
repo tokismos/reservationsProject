@@ -4,7 +4,7 @@ import "./index.css"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import App from "./App.tsx"
 import ErrorPage from "./error-page.tsx"
-import { Products } from "./screens/Products.tsx"
+import { Reservations } from "./screens/Reservations.tsx"
 
 const router = createBrowserRouter([
   {
@@ -13,8 +13,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: "/products",
-        element: <Products />,
+        path: "/reservations",
+        element: <Reservations />,
       },
     ],
   },
