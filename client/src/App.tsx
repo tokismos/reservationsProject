@@ -1,11 +1,11 @@
-import { Outlet } from "react-router-dom"
 import { QueryProvider } from "./providers"
+import { Reservations } from "./screens/Reservations"
 
 function App() {
   return (
     <QueryProvider>
       <div className="w-screen h-screen">
-        <Outlet />
+        <Reservations />
       </div>
     </QueryProvider>
   )

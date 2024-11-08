@@ -1,9 +1,9 @@
 import { getReservation, getReservations } from "../models/ReservationModel"
 import { Request, Response } from "express"
 
-export const getAllReservations = async (req: Request, res: Response) => {
+export const getAllReservations = (req: Request, res: Response) => {
   try {
-    const reservations = await getReservations()
+    const reservations = getReservations()
 
     res.json({
       success: true,

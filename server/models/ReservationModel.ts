@@ -1,3 +1,12 @@
+import { PRODUCT_ASSIGNMENT } from "../mockData/product_assignment"
+import { PRODUCT_CHARGES } from "../mockData/product_charges"
+import {
+  CombinedProduct,
+  ProductAssignment,
+  ProductCharge,
+  ProductStatus,
+} from "../types/product"
+
 interface ReservationProductSummary {
   product_name: string
   status: ProductStatus
@@ -13,18 +22,8 @@ interface FinalReservationSummary {
   products: ReservationProductSummary[]
 }
 
-import { PRODUCT_ASSIGMNET } from "../mockData/product_assignment"
-import { PRODUCT_CHARGES } from "../mockData/product_charges"
-import {
-  CombinedProduct,
-  ProductAssignment,
-  ProductCharge,
-  ProductStatus,
-  ProductSummary,
-} from "../types/product"
-
 export const getReservations = (): FinalReservationSummary[] => {
-  const combinedProducts: CombinedProduct[] = PRODUCT_ASSIGMNET.map(
+  const combinedProducts: CombinedProduct[] = PRODUCT_ASSIGNMENT.map(
     (assignment: ProductAssignment) => {
       const charge = PRODUCT_CHARGES.find(
         (charge: ProductCharge) =>

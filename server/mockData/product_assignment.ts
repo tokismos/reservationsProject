@@ -1,4 +1,4 @@
-export const PRODUCT_ASSIGMNET = [
+export const PRODUCT_ASSIGNMENT = [
   {
     id: 398555,
     reservation_uuid: "622e142c-594d-4624-97ca-0e7c019ba4cc",
