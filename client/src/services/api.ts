@@ -7,17 +7,31 @@ export const api = axios.create({
   baseURL: API_URL,
 })
 
-export const getAllReservations = async () => {
+type ListResponse = {
+  success: boolean
+  data: Reservation[]
+}
+
+type SingleResponse = {
+  success: boolean
+  data: Reservation
+}
+
+export const getAllReservations: () => Promise<ListResponse> = async () => {
   try {
-    const response = await api.get("/", {})
+    const response = await api.get("/")
     return response.data
   } catch (e) {
     console.log("Error has occured", e)
   }
 }
-export const getReservationById = async (id: Reservation["reservationId"]) => {
+
+export const getReservationById: (
+  arg: string
+) => Promise<SingleResponse> = async (id: string) => {
   try {
-    const response = await api.get(`/${id}`, {})
+    const response = await api.get(`/${id}`)
+
     return response.data
   } catch (e) {
     console.log("Error has occured", e)

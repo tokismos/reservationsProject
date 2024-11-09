@@ -6,7 +6,7 @@ export const useGetReservationById = (id: Reservation["reservationId"]) => {
   return useQuery({
     queryKey: ["getReservation", id],
     queryFn: () => getReservationById(id),
-    select: ({ data }) => data,
+    select: ({ data }) => (data ? [data] : []),
     enabled: !!id,
   })
 }

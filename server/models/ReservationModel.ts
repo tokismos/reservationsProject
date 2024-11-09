@@ -90,6 +90,5 @@ export const getReservation = (reservationId) => {
   const reservation = allProducts.find(
     (reservation) => reservation.reservationId === reservationId
   )
-
   return reservation
 }

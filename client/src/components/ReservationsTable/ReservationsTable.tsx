@@ -7,12 +7,18 @@ import {
 } from "@/components/ui/table"
 import { ReservationRow } from "./ReservationRow"
 import { Reservation } from "@/types/reservation"
+import { EmptyStateRow } from "./EmptyStateRow"
 
 type ReservationsTableProps = {
   reservations: Reservation[]
+  isSearching: boolean
 }
 
-export const ReservationsTable = ({ reservations }: ReservationsTableProps) => {
+export const ReservationsTable = ({
+  reservations,
+  isSearching,
+}: ReservationsTableProps) => {
+  const isEmpty = !isSearching && !reservations.length
   return (
     <div className="border rounded-lg">
       <Table>
@@ -25,12 +31,16 @@ export const ReservationsTable = ({ reservations }: ReservationsTableProps) => {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {reservations?.map((reservation) => (
-            <ReservationRow
-              key={reservation.reservationId}
-              reservation={reservation}
-            />
-          ))}
+          {isEmpty ? (
+            <EmptyStateRow />
+          ) : (
+            reservations?.map((reservation) => (
+              <ReservationRow
+                key={reservation.reservationId}
+                reservation={reservation}
+              />
+            ))
+          )}
         </TableBody>
       </Table>
     </div>

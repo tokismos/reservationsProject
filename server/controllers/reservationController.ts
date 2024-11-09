@@ -24,14 +24,6 @@ export const getReservationById = async (req, res) => {
 
     const reservation = getReservation(reservationId)
 
-    if (!reservation) {
-      return res.status(404).json({
-        success: false,
-        error: "Reservation not found",
-        message: `No reservation found with ID: ${reservationId}`,
-      })
-    }
-
     res.json({
       success: true,
       data: reservation,
