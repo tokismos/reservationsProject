@@ -8,16 +8,16 @@ import {
 } from "../types/product"
 
 interface ReservationProductSummary {
-  product_name: string
+  productName: string
   status: ProductStatus
   charge: number
 }
 
 interface FinalReservationSummary {
-  reservation_uuid: string
+  reservationId: string
   summary: {
-    number_of_active_purchases: number
-    sum_of_active_charges: number
+    nbrOfActivePurchases: number
+    sumActiveCharges: number
   }
   products: ReservationProductSummary[]
 }
@@ -70,15 +70,15 @@ export const getReservations = (): FinalReservationSummary[] => {
   const summaryData: FinalReservationSummary[] = Object.values(
     reservationSummary
   ).map((reservation: any) => ({
-    reservation_uuid: reservation.reservation_uuid,
+    reservationId: reservation.reservation_uuid,
     summary: {
-      number_of_active_purchases: reservation.active_purchases,
-      sum_of_active_charges: reservation.total_charges,
+      nbrOfActivePurchases: reservation.active_purchases,
+      sumActiveCharges: Math.round(reservation.total_charges),
     },
     products: reservation.products.map((product) => ({
-      product_name: product.name,
+      productName: product.name,
       status: product.status,
-      charge: product.charge,
+      charge: Math.round(product.charge),
     })),
   }))
 
@@ -88,7 +88,7 @@ export const getReservations = (): FinalReservationSummary[] => {
 export const getReservation = (reservationId) => {
   const allProducts = getReservations()
   const reservation = allProducts.find(
-    (reservation) => reservation.reservation_uuid === reservationId
+    (reservation) => reservation.reservationId === reservationId
   )
 
   return reservation

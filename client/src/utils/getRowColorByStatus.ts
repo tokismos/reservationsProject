@@ -1,6 +1,6 @@
 import { ProductStatus } from "@/types/product"
 
-export const getStatusColor = (status: ProductStatus) => {
+export const getRowColorByStatus = (status: ProductStatus) => {
   switch (status) {
     case "active":
       return "bg-green-500"

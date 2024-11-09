@@ -1,1 +1,1 @@
-export { getStatusColor } from "./getStatusColor"
+export { getStatusColor } from "./getRowColorByStatus"
