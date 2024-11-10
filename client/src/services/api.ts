@@ -35,7 +35,7 @@ export const getReservationById: (
     const response = await api.get(`/${id}`)
 
     // THIS LINE IS JUST TO SIMULATE AN ASYNC DELAY
-    await waitFor(500)
+    await waitFor(200)
 
     return response.data
   } catch (e) {
