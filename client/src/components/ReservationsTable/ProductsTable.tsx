@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/table"
 import { cn } from "@/lib/utils"
 import { Product } from "@/types/product"
-import { getRowColorByStatus } from "@/utils/getRowColorByStatus"
+import { getRowColorByStatus } from "@/utils"
 
 type ProductsTableProps = {
   products: Product[]

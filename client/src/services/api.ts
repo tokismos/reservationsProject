@@ -1,4 +1,5 @@
 import { Reservation } from "@/types/reservation"
+import { waitFor } from "@/utils"
 import axios from "axios"
 
 const API_URL = "http://localhost:3000/api/reservations"
@@ -31,6 +32,9 @@ export const getReservationById: (
 ) => Promise<SingleResponse> = async (id: string) => {
   try {
     const response = await api.get(`/${id}`)
+
+    // THIS LINE IS JUST TO SIMULATE AN ASYNC DELAY
+    await waitFor(500)
 
     return response.data
   } catch (e) {

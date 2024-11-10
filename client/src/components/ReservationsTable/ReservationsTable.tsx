@@ -9,7 +9,6 @@ import {
 } from "@/components/ui/table"
 import { ReservationRow } from "./ReservationRow"
 import { Reservation } from "@/types/reservation"
-import { EmptyStateRow } from "./EmptyStateRow"
 import { usePagination } from "@/hooks/usePagination"
 import { Pagination } from "../Pagination"
 
@@ -40,10 +39,23 @@ export const ReservationsTable = ({
   })
 
   const isEmpty = !isSearching && !reservations.length
-
-  const currentItems = isSearchActive
+  const displayedReservations = isSearchActive
     ? reservations
     : getCurrentPageData(reservations)
+
+  if (isSearching)
+    return (
+      <div className="border rounded-lg">
+        <div className="flex justify-center">Loading...</div>
+      </div>
+    )
+
+  if (isEmpty)
+    return (
+      <div className="border rounded-lg">
+        <div className="flex justify-center">No reservation found...</div>
+      </div>
+    )
 
   return (
     <div className="space-y-4">
@@ -59,19 +71,17 @@ export const ReservationsTable = ({
               </TableHead>
             </TableRow>
           </TableHeader>
+
           <TableBody>
-            {isEmpty ? (
-              <EmptyStateRow />
-            ) : (
-              currentItems.map((reservation) => (
-                <ReservationRow
-                  key={reservation.reservationId}
-                  reservation={reservation}
-                />
-              ))
-            )}
+            {displayedReservations.map((reservation) => (
+              <ReservationRow
+                key={reservation.reservationId}
+                reservation={reservation}
+              />
+            ))}
           </TableBody>
-          {!isEmpty && !isSearchActive && (
+
+          {!isSearchActive && (
             <TableFooter>
               <TableRow>
                 <TableCell colSpan={4}>

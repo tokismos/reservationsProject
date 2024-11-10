@@ -1,4 +1,4 @@
-import { getReservation, getReservations } from "../models/ReservationModel"
+import { getReservation, getReservations } from "../models/ReservationModel.js"
 import { Request, Response } from "express"
 
 export const getAllReservations = (req: Request, res: Response) => {

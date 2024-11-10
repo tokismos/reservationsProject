@@ -2,7 +2,7 @@ import { Router, Response, Request } from "express"
 import {
   getAllReservations,
   getReservationById,
-} from "../controllers/reservationController"
+} from "../controllers/reservationController.js"
 
 const router = Router()
 

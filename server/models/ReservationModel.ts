@@ -1,11 +1,11 @@
-import { PRODUCT_ASSIGNMENT } from "../mockData/product_assignment"
-import { PRODUCT_CHARGES } from "../mockData/product_charges"
+import { PRODUCT_ASSIGNMENT } from "../mockData/product_assignment.js"
+import { PRODUCT_CHARGES } from "../mockData/product_charges.js"
 import {
   CombinedProduct,
   ProductAssignment,
   ProductCharge,
   ProductStatus,
-} from "../types/product"
+} from "../types/product.js"
 
 interface ReservationProductSummary {
   productName: string
