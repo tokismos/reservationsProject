@@ -37,7 +37,7 @@ export const Reservations = () => {
       <div className="w-full p-4">
         <div className="px-4 py-2 rounded-md">
           An error has occurred:
-          {error instanceof Error ? error.message : "Unknown error"}
+          {error.message}
         </div>
       </div>
     )
@@ -49,7 +49,12 @@ export const Reservations = () => {
         isSearching={isSearching}
         setActiveSearchId={setActiveSearchId}
       />
-      <ReservationsTable reservations={displayData} isSearching={isSearching} />
+      <ReservationsTable
+        reservations={displayData}
+        isSearching={isSearching}
+        isSearchActive={!!activeSearchId}
+        itemsPerPage={20}
+      />
     </div>
   )
 }
