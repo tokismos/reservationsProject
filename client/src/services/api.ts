@@ -2,7 +2,8 @@ import { Reservation } from "@/types/reservation"
 import { waitFor } from "@/utils"
 import axios from "axios"
 
-const API_URL = "http://localhost:3000/api/reservations"
+const API_URL =
+  import.meta.env.VITE_API_URL || "http://localhost:3000/api/reservations"
 
 export const api = axios.create({
   baseURL: API_URL,
